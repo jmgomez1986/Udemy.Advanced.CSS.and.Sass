@@ -16,6 +16,10 @@
     display: block;
     transition: all 0.3s;
 
+    @include respond(tab-port) {
+			width: 100%;
+		}
+
     &:focus {
       outline: none;
       box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
@@ -50,6 +54,11 @@
   &__radio-group {
     width: 49%;
     display: inline-block;
+
+    @include respond(tab-port) {
+			width: 100%;
+      margin-bottom: 2rem;
+		}
   }
 
   &__radio-input {
@@ -85,7 +94,7 @@
       transition: opacity 0.2s;
     }
   }
-  //@at-rootSe selecciona el hermano del input (label) y de ahi se selecciona el hijo (span)
+  //Se selecciona el hermano del input (label) y de ahi se selecciona el hijo (span)
   &__radio-input:checked ~ &__radio-label &__radio-button::after {
     opacity: 1;
   }
