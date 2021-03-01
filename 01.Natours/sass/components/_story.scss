@@ -22,16 +22,25 @@
   &__shape {
     width: 15rem;
     height: 15rem;
-    float: left;
-    background-color: orangered;
-    -webkit-shape-outside: circle(50% at 50% 50%);
-    shape-outside: circle(
-      50% at 50% 50%
-    ); // Para que el texto parezca que rodea un circulo (Define donde flota el contenido)
-    -webkit-clip-path: circle(50% at 50% 50%);
-    clip-path: circle(50% at 50% 50%); // Forma el circulo
-    transform: translateX(-3rem) skewX(12deg); // Al estar flotando no se usa la propiedad margin, hay que trasladarlo
     position: relative;
+    float: left;
+    transform: translateX(-3rem) skewX(12deg); // Al estar flotando no se usa la propiedad margin, hay que trasladarlo
+    overflow: hidden;
+    border-radius: 50%;
+
+    // -webkit-shape-outside: circle(50% at 50% 50%);
+    // shape-outside: circle(50% at 50% 50%); // Para que el texto parezca que rodea un circulo (Define donde flota el contenido)
+    
+    // -webkit-clip-path: circle(50% at 50% 50%);
+    // clip-path: circle(50% at 50% 50%); // Forma el circulo
+
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      -webkit-clip-path: circle(50% at 50% 50%);
+      clip-path: circle(50% at 50% 50%);
+      -webkit-shape-outside: circle(50% at 50% 50%);
+      shape-outside: circle(50% at 50% 50%);
+      border-radius: none;
+    }
 
     @include respond(phone) {
       transform: translateX(-3rem) skewX(0);;
